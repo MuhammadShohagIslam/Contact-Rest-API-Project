@@ -1,0 +1,79 @@
+<%- include('../layouts/header.ejs') %>
+<main>
+    <div class="container">
+        <div class="mt-5">
+            <h1 class="text-center">Contact Form</h1>
+            <form class="row g-3" action="/" method="POST">
+                <div class="col-md-6">
+                    <label class="form-label">Name</label>
+                    <input
+                        type="text"
+                        class="form-control <%= error.name ? 'is-invalid': ' ' %>"
+                        name="name"
+                        placeholder="Enter Your Name"
+                    />
+                    <div class="invalid-feedback"><%= error.name %></div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fs-1">Email</label>
+                    <input
+                        type="email"
+                        class="form-control <%= error.email ? 'is-invalid': ' ' %>"
+                        name="email"
+                        placeholder="Enter Your Email"
+                    />
+                    <div class="invalid-feedback"><%= error.email %></div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input
+                        type="text"
+                        class="form-control <%= error.phone ? 'is-invalid': ' ' %>"
+                        name="phone"
+                        placeholder="Enter Your Phone"
+                    />
+                    <div class="invalid-feedback"><%= error.phone %></div>
+                </div>
+                <div class="col-12 text-center">
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                        value="Submit"
+                    >
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="mt-5">
+            <h2>My Contact List</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let contact of contacts) { %>
+                    <tr>
+                        <td><%= contact.name %></td>
+                        <td><%= contact.email %></td>
+                        <td><%= contact.phone %></td>
+                        <td>
+                            <button class="btn btn-warning">Edit</button>
+                            <a href="/delete/<%= contact._id %>" class="btn btn-danger"
+                                >Delete</a
+                            >
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<%- include('../layouts/footer.ejs') %>
